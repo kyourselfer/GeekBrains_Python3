@@ -10,26 +10,38 @@
 #  - верно указан.
 import re
 
-# def check_regex(regex, text):
-#     a = re.search(regex, text)
-#     if a:
-#         return a
-#     else:
-#         return None
-#
-#
-# firstReq = {'name': input('Введите имя:').title(), 'lastname': input('Введите фамилию:').title(),
-#             'email': input('Введите email:').lower()}
-# regex = '^[\w_]+@[\w.]+\.(com|ru|org$)'
-# print('Ваше имя: {}\nВаша фамилия: {}\nВаш EM@il: {}\n'.format(firstReq['name'], firstReq['lastname'],
-#                                                                check_regex(regex, firstReq['email'])))
-# if check_regex(regex, firstReq['email']):
-#     print('Все поля заполнены корректно')
-# else:
-#     print('Неверно указан email: {} необходимо ввести по формату user@email.com|org|ru\n'.format(firstReq['email']))
 
-# Задача - 2:
-# Вам дан текст:
+def check_regex(regex, text):
+    a = re.search(regex, text)
+    if a:
+        return a.group(0)
+    else:
+        return None
+
+
+firstReq = {'name': input('Введите имя:').title(), 'lastname': input('Введите фамилию:').title(),
+            'email': input('Введите email:').lower()}
+regexName = '^[a-zA-Z-]{2,20}$'
+regexEmail = '^[\w_]+@[\w.]+\.(com|ru|org$)'
+print('Ваше имя: {}\nВаша фамилия: {}\nВаш EM@il: {}\n'.format(check_regex(regexName, firstReq['name']),
+                                                               check_regex(regexName, firstReq['lastname']),
+                                                               check_regex(regexEmail, firstReq['email'])))
+if check_regex(regexName, firstReq['name']):
+    if check_regex(regexName, firstReq['lastname']):
+        if check_regex(regexEmail, firstReq['email']):
+            print('Все поля заполнены корректно')
+        else:
+            print('Неверно указан email: {} необходимо ввести по формату user@email.com|org|ru\n'.format(
+                firstReq['email']))
+    else:
+        print('Неверно указана фамилия: {} необходимо вводить только буквы или - \n'.format(firstReq['lastname']))
+else:
+    print('Неверно указано имя: {} необходимо вводить только буквы или - \n'.format(firstReq['name']))
+
+#
+# # Задача - 2:
+# # Вам дан текст:
+print('\n')
 some_str = '''
 Мороз и солнце; день чудесный!
 Еще ты дремлешь, друг прелестный —
