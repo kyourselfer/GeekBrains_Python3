@@ -14,5 +14,3 @@ if __name__ == '__main__':
     shutil.copy(__file__, 'copy_' + os.path.split(__file__)[1])
 
 
-def show(a1):
-    return os.listdir(path=a1)

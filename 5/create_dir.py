@@ -2,8 +2,7 @@
 # Напишите скрипт, создающий директории dir_1 - dir_9 в папке,
 # из которой запущен данный скрипт.
 print(__name__)
-if __name__ == '__main__':
-    import os
+import os
 
 
 def create_dir(a1):
