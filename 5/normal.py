@@ -15,16 +15,35 @@
 # и импортированные в данный файл из easy.py
 print(__name__)
 from show_f import show
+from create_dir import create_dir
+from delete_dir import delete_dir
 
-choice = input('\nВыберите следующее действие над папкой:\n\t'
-               '- 1. Перейти в папку\n\t'
-               '- 2. Просмотреть содержимое текущей папки\n\t'
-               '- 3. Удалить папку\n\t'
-               '- 4. Создать папку\n'
-               'Введите: ')
-menu = {'1': '1111', '2': show("."), '3': '333', '4': ''}
 
-if choice == '2':
-    print(menu[choice])
-elif choice == '4':
-    print('s')
+def input1(a1):
+    r1 = input()
+
+
+while True:
+    try:
+        choice = int(input('\nВыберите следующее действие над папкой:\n\t'
+                           '- 1. Перейти в папку\n\t'
+                           '- 2. Просмотреть содержимое текущей папки\n\t'
+                           '- 3. Удалить папку\n\t'
+                           '- 4. Создать папку\n\t'
+                           '- 5. Выход\n'
+                           'Введите: '))
+    except ValueError:
+        print('Неверный ввод, только цифры!')
+        continue
+    if 0 < choice < 6:
+        if choice == 1:
+        if choice == 2:
+            print(show("."))
+        elif choice == 3:
+            delete_dir(input('Введите имя для удаления: '))
+        elif choice == 4:
+            create_dir(input('Введите имя для создания: '))
+        elif choice == 5:
+            break
+    else:
+        print(' Введите цифры от 1 до 5.')
