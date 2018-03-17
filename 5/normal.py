@@ -13,14 +13,19 @@
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
-print(__name__)
-from show_f import show
-from create_dir import create_dir
-from delete_dir import delete_dir
+if __name__ == '__main__':
+    import os
+    from create_dir import create_dir
+    from delete_dir import delete_dir
+    from show_f import show
 
 
 def input1(a1):
     r1 = input()
+
+
+def cd1(a1):
+    os.chdir(a1)
 
 
 while True:
@@ -37,13 +42,29 @@ while True:
         continue
     if 0 < choice < 6:
         if choice == 1:
+            try:
+                cd1(input('Введите имя папки:'))
+                print('Успешно перешел.')
+            except Exception:
+                print('Не возможно перейти!')
         if choice == 2:
-            print(show("."))
+            try:
+                print(show("."))
+            except Exception:
+                print('Не возможно просмотреть')
         elif choice == 3:
-            delete_dir(input('Введите имя для удаления: '))
+            try:
+                delete_dir(input('Введите имя папки: '))
+                print('Удалено!')
+            except Exception:
+                print('Не возможно удалить')
         elif choice == 4:
-            create_dir(input('Введите имя для создания: '))
+            try:
+                create_dir(input('Введите имя папки: '))
+                print('Создано!')
+            except Exception:
+                print('Не возможно создать')
         elif choice == 5:
             break
     else:
-        print(' Введите цифры от 1 до 5.')
+        print('Введите цифры от 1 до 5.')
