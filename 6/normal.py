@@ -12,6 +12,7 @@
 
 class Person:
     '''Родитель персоны'''
+
     def __init__(self):
         # attributes
         self.name = ''
@@ -21,9 +22,6 @@ class Person:
 
     # methods
     ###########
-    def atack(self):
-        pass
-
     def _show_attr(self):
         return 'Здоровье: {} Урон: {} Защита: {} '.format(self.health, self.damage, self.armor)
 
@@ -43,17 +41,35 @@ class Player(Person):
         print('Имя игрока: {}, {}'.format(self.get_name(), self._show_attr()))
 
 
+class Enemy(Person):
+    def __init__(self):
+        super().__init__()
+
+    def set_name(self, create_name):
+        self.name = create_name
+        print('Присвоино имя: ', self.name)
+
+    def get_name(self):
+        return self.name
+
+    def show(self):
+        print('Имя чужого: {}, {}'.format(self.get_name(), self._show_attr()))
+
+
 Player1 = Player()
 Player1.set_name('Kolya')
 Player1.show()
 
 # Enemy.
+Enemy1 = Player()
+Enemy1.set_name('Buriy')
+
 com = """def generate_person(name, health=100, damage=50):
     return {'name': name, 'health': health, 'damage': damage}
 
 
 def attack(who_attack, who_defend):
-    who_defend['health'] -= who_attack['damage']
+    who_defend['health'] -= who_attack['damage'] 
 
 
 def pow(x, y):
