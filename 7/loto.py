@@ -44,17 +44,62 @@ import random
 
 # Случайный боченок из мешка
 def randomchoice(bag):
-    x = [bag[i] for i in bag]
-    # c for c in range(1, len(bag) + 1, random.randrange(1, len(bag) + 1))
+    r = random.randrange(1, len(bag) - 1)
+    x = bag[r]
     return x
 
 
+## боченок
+# мешок с боченками
 bagofbarrels = [x for x in range(1, 91)]
-print('мешок: ', bagofbarrels)
-
-# print(randomchoice(bagofbarrels))
-
+print('мешок:', bagofbarrels)
 # Каждый ход выбирается один случайный бочонок и выводится на экран.
+print('боченок:', randomchoice(bagofbarrels))
+
+## карточка
+# Создали рандомную строку
+cardstr1 = [random.randrange(1, 89) for x in range(0, 9)]
+print('Создали рандомную строку:', cardstr1)
+# Просортировали строку
+cardstr1.sort()
+print('Просортировали:', cardstr1)
+# Уникальность каждого элемента
+# cardstr1 = [h for h in cardstr1 if cardstr1.count(h) == 1]
+cardstr1new = []
+for h in cardstr1:
+    print(h, cardstr1.count(h))
+    if cardstr1.count(h) == 1:  # если элемент уникален добавить
+        cardstr1new.append(h)
+    else:   # элемент не уникален тогда заменить случайным и проверить на уникальность заново
+        print(cardstr1new.index(h))
+        # pass
+print(cardstr1new)
+
+# print('sorted', sortstr1)
+# Заменяем в строке 4 элемента(случайно) на ''
+while cardstr1.count('') <= 3:
+    x = random.randrange(0, 9)
+    cardstr1[x] = ''
+print('Заменяем в строке 4 элемента(в случайном порядке) на пробелы:', cardstr1)
+# Все цифры в карточке уникальны.
+
+
+# СРАВНЕНИЕ на уникальность
+# i = 1
+# countx = 0
+# while countx != 4:
+#     for x in cardstr1:
+#         if x == 0:
+#             countx = countx + 1
+#             print('I\'ve found')
+#             print('Счетчик: ', countx)
+#             if countx == 2:
+#                 break
+#             else:
+#                 continue
+#         else:
+#             continue
+
 
 # Каждая карточка содержит 3 строки по 9 клеток. В каждой строке по 5 случайных цифр,
 # расположенных по возрастанию. Все цифры в карточке уникальны.
