@@ -44,9 +44,35 @@ import random
 
 # Случайный боченок из мешка
 def randomchoice(bag):
-    r = random.randrange(1, len(bag) - 1)
-    x = bag[r]
-    return x
+    # r =
+    # x = bag[r]
+    # return x
+    return random.randrange(1, len(bag) - 1)
+
+
+# Получаем список:
+# 1. Проверяем на уникальность
+# 2. Сортируем
+# 3. Отдаем список
+def uniqsort(list):
+    # переберем строку на одинаковость элементов
+    # если элемент уникален добавляем
+    listuniq = [x for x in list if list.count(x) == 1]
+    print('Uniq:', listuniq, 'length:', len(listuniq))
+    # если длина меньше 9 добавить элементов
+    while len(listuniq) < 9:
+        # добавляем
+        listuniq.append(randomchoice(list))
+        for k in listuniq:
+            # error
+            if listuniq.count(k) > 1:
+                listuniq.remove(k)
+            else:
+                listuniq.append(randomchoice(list))
+    # Просортировали строку
+    print(listuniq)
+    # print(listuniq.sort())
+    # return listuniq
 
 
 ## боченок
@@ -59,31 +85,31 @@ print('боченок:', randomchoice(bagofbarrels))
 ## карточка
 # Создали рандомную строку
 cardstr1 = [random.randrange(1, 89) for x in range(0, 9)]
-print('Создали рандомную строку:', cardstr1)
-# Просортировали строку
-cardstr1.sort()
-print('Просортировали:', cardstr1)
-# Уникальность каждого элемента
-# cardstr1 = [h for h in cardstr1 if cardstr1.count(h) == 1]
-cardstr1new = []
-for h in cardstr1:
-    print(h, cardstr1.count(h))
-    if cardstr1.count(h) == 1:  # если элемент уникален добавить
-        cardstr1new.append(h)
-    else:   # элемент не уникален тогда заменить случайным и проверить на уникальность заново
-        print(cardstr1new.index(h))
-        # pass
-print(cardstr1new)
+print('Карта1:', cardstr1)
+uniqsort(cardstr1)
+# print('Uniq:', uniqsort(cardstr1))
+# переберем строку на одинаковость элементов
+# если элемент уникален добавляем
+# print('str1:', cardstr1)
+# cardstr1uniq = [h for h in cardstr1 if cardstr1.count(h) == 1]
+# print('length before:', len(cardstr1uniq))
+# while len(cardstr1uniq) < 9:
+#     cardstr1uniq.append(randomchoice(bagofbarrels))
+# print('length after:', len(cardstr1uniq))
+# print('uniq after:', cardstr1uniq)
+# # Просортировали строку
+# cardstr1uniq.sort()
+# print('Просортировали:', cardstr1uniq)
 
-# print('sorted', sortstr1)
 # Заменяем в строке 4 элемента(случайно) на ''
-while cardstr1.count('') <= 3:
-    x = random.randrange(0, 9)
-    cardstr1[x] = ''
-print('Заменяем в строке 4 элемента(в случайном порядке) на пробелы:', cardstr1)
+# while cardstr1.count('') <= 3:
+#     x = random.randrange(0, 9)
+#     cardstr1[x] = ''
+# print('Заменяем в строке 4 элемента(в случайном порядке) на пробелы:', cardstr1)
 # Все цифры в карточке уникальны.
-
-
+#
+# a = [1,2,2,3]
+# print(a.index(3))
 # СРАВНЕНИЕ на уникальность
 # i = 1
 # countx = 0
