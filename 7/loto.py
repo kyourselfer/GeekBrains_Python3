@@ -52,25 +52,35 @@ def randomchoice(bag):
 
 # Получаем список:
 # 1. Проверяем на уникальность
-# 2. Сортируем
-# 3. Отдаем список
-def uniqsort(list):
+# 3. Отдаем уникальный список
+def uniqsort(l):
     # переберем строку на одинаковость элементов
     # если элемент уникален добавляем
-    listuniq = [x for x in list if list.count(x) == 1]
+    listuniq = [x for x in l if l.count(x) == 1]
+    if len(listuniq) < 9:
+        print('len < 9: Отправляем list в numberel9()')
+        numberel9(listuniq, bagofbarrels)
+    else:
+        print('el. >= 9')
     print('Uniq:', listuniq, 'length:', len(listuniq))
-    # если длина меньше 9 добавить элементов
-    while len(listuniq) < 9:
-        # добавляем
-        listuniq.append(randomchoice(list))
-        for k in listuniq:
-            # error
-            if listuniq.count(k) > 1:
-                listuniq.remove(k)
-            else:
-                listuniq.append(randomchoice(list))
+    return listuniq
+
+
+def numberel9(l1, bag):
+    print('You\'ve entered to numberel9().')
+    # пока длина меньше 9 добавить элементов
+    l1new = []
+    while len(l1new) <= 9:
+        print('while:', l1new, len(l1new))
+        for k in bag:
+            print('for:', k)
+            if k not in l1new:
+                print('IF:')
+                l1new.append(k)
+    # добавляем если el. если нету в list
+
     # Просортировали строку
-    print(listuniq)
+    print(l1, '\n', l1new)
     # print(listuniq.sort())
     # return listuniq
 
@@ -86,20 +96,10 @@ print('боченок:', randomchoice(bagofbarrels))
 # Создали рандомную строку
 cardstr1 = [random.randrange(1, 89) for x in range(0, 9)]
 print('Карта1:', cardstr1)
-uniqsort(cardstr1)
+# uniqsort(cardstr1)
+cardstr1uniqsort = cardstr1
+
 # print('Uniq:', uniqsort(cardstr1))
-# переберем строку на одинаковость элементов
-# если элемент уникален добавляем
-# print('str1:', cardstr1)
-# cardstr1uniq = [h for h in cardstr1 if cardstr1.count(h) == 1]
-# print('length before:', len(cardstr1uniq))
-# while len(cardstr1uniq) < 9:
-#     cardstr1uniq.append(randomchoice(bagofbarrels))
-# print('length after:', len(cardstr1uniq))
-# print('uniq after:', cardstr1uniq)
-# # Просортировали строку
-# cardstr1uniq.sort()
-# print('Просортировали:', cardstr1uniq)
 
 # Заменяем в строке 4 элемента(случайно) на ''
 # while cardstr1.count('') <= 3:
@@ -125,6 +125,59 @@ uniqsort(cardstr1)
 #                 continue
 #         else:
 #             continue
+cardstr1uniqsort = ['', '', '', '', 5, 6, 7, 8, 9]
+cardstr2uniqsort = [10, 11, 12, 13, '', '', '', 17, '']
+cardstr3uniqsort = [19, '', 21, '', '', '', 25, 26, 27]
+card1 = [cardstr1uniqsort, cardstr2uniqsort, cardstr3uniqsort]
+print('Card1:', card1)
+
+
+# Пользователю предлагается зачеркнуть цифру на карточке или продолжить.
+# Ищем боченок в строке
+def bs(el, str):
+    if el in str:
+        i1 = str.index(barrel)
+        str.pop(i1)
+        str.insert(i1, 'X')
+        return str
+    ############################################################ если нет тогда вернуть не измененную строку
+
+
+while True:
+    barrel = int(input('Enter № of barrel: '))
+    choiceofplayer1 = input('Зачеркните цифру на карточке или продолжить y/r: ')
+    if choiceofplayer1 == 'y':
+        # Если игрок выбрал "зачеркнуть":
+        # Если цифра есть на карточке - она зачеркивается и игра продолжается.
+        numofstr = 0
+        for str in card1:
+            # номер строки
+            numofstr += 1
+            print(bs(barrel, str))
+            #
+            # if barrel in str:
+            #     print('in:', numofstr)
+            #     i1 = str.index(barrel)
+            #     str.pop(i1)
+            #     str.insert(i1, 'X')
+            #     continue
+            # elif barrel not in str:
+            #     pass
+            # else:
+            #     pass
+    elif choiceofplayer1 == 'r':
+        print(card1)
+        continue
+    else:
+        break
+    print(card1)
+
+# 	Если цифры на карточке нет - игрок проигрывает и игра завершается.
+# Если игрок выбрал "продолжить":
+# 	Если цифра есть на карточке - игрок проигрывает и игра завершается.
+# 	Если цифры на карточке нет - игра продолжается.
+#
+# Побеждает тот, кто первый закроет все числа на своей карточке.
 
 
 # Каждая карточка содержит 3 строки по 9 клеток. В каждой строке по 5 случайных цифр,
